@@ -1,0 +1,17 @@
+services:
+  mvc:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: mvc-web
+
+    ports:
+      - "8080:8080"
+
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:8080
+      ExternalApi__BaseUrl: https://localhost:7004
+
+    restart: unless-stopped
