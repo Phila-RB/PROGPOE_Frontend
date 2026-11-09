@@ -31,20 +31,20 @@ namespace PROGPOE_Frontend.Controllers
             var res = await _LogApi.RegisterUser(user);
             if(res)
             {
-                return Content("true");
+                return RedirectToAction("Index", "Login");
             }
-            //if (ModelState.IsValid) {
-            //    return View(user);
-            //}
-            return Content("false");
+
+            return RedirectToAction("Index", "Login");
         }
 
         [HttpPost]
         public async Task<IActionResult> Login(User user)
         {
             var res = await _LogApi.LoginUser(user);
-            //return Ok(res);
-            //return Content(res.Access + res.Name + res.Surname + res.Token + res.UserID);
+            if (res == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             var claims = new List<Claim> { new Claim(ClaimTypes.Sid, res.UserID.ToString()), new Claim(ClaimTypes.Name, res.Name), new Claim(ClaimTypes.Surname, res.Surname), new Claim(ClaimTypes.Role, res.Access) };
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 

@@ -1,43 +1,343 @@
 ﻿@model PROGPOE_Frontend.Models.User
-<div>
-	<h2>RaceDay</h2>
-	<div>
-		<div>
-			<button id="logBut">Login</button>
-			<button id="regBut">Register</button>
-		</div>
-		<div>
-			<div id="regForm" class="d-block">
-				<Form asp-action="Register" method="post">
-					<lable>Name</lable>
-					<input asp-for="Name"/>
-					<lable>Surname</lable>
-					<input asp-for="Surname"/>
-					<lable>Access</lable>
-					<select asp-for="Access">
-						<option value="Participant">Participant</option>
-						<option value="Organiser">Organiser</option>
-					</select>
-					<lable>Password</lable>
-					<input asp-for="Password"/>
-					<button type="submit">Register</button>
-				</Form>
-			</div>
-			<div id="logForm" class="d-none">
-				<Form asp-action="Login" method="post">
-					@Html.AntiForgeryToken()
-					<lable>Name</lable>
-					<input asp-for="Name" />
-					<lable>Surname</lable>
-					<input asp-for="Surname" />
-					<lable>Password</lable>
-					<input asp-for="Password" />
-					<button type="submit">Login</button>
-				</Form>
-			</div>
-		</div>
-	</div>
+
+<style>
+    body {
+        background-color: #f4f6f3;
+    }
+
+    .auth-wrapper {
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        padding: 50px 15px;
+    }
+
+    .auth-card {
+        background: white;
+        border: 1px solid #e7ece5;
+        border-radius: 12px;
+        overflow: hidden;
+        max-width: 950px;
+        width: 100%;
+        margin: auto;
+        box-shadow: 0 10px 35px rgba(23, 43, 34, .07);
+    }
+
+    .auth-banner {
+        background: #172b22;
+        color: white;
+        padding: 55px 35px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 100%;
+        border-bottom: 5px solid #8dbd42;
+    }
+
+    .brand-label {
+        color: #b6e878;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 4px;
+        margin-bottom: 15px;
+    }
+
+    .brand-heading {
+        font-size: 3.5rem;
+        font-weight: 900;
+        letter-spacing: -2px;
+        margin-bottom: 15px;
+    }
+
+    .brand-heading span {
+        color: #8dbd42;
+    }
+
+    .brand-description {
+        color: #bdc9bf;
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .brand-accent {
+        width: 55px;
+        height: 4px;
+        background: #8dbd42;
+        margin: 20px 0;
+        border-radius: 5px;
+    }
+
+    .auth-content {
+        padding: 45px 40px;
+    }
+
+    .sport-label {
+        color: #85ad42;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 3px;
+    }
+
+    .auth-heading {
+        color: #172b22;
+        font-size: 28px;
+        font-weight: 900;
+        letter-spacing: -1px;
+        margin: 8px 0;
+    }
+
+    .auth-subtitle {
+        color: #7b877f;
+        font-size: 13px;
+        margin-bottom: 25px;
+    }
+
+    .auth-tabs {
+        display: flex;
+        background: #f1f4ef;
+        padding: 5px;
+        border-radius: 7px;
+        margin-bottom: 28px;
+        gap: 5px;
+    }
+
+    .auth-tabs button {
+        width: 50%;
+        border: none;
+        background: transparent;
+        color: #718074;
+        padding: 12px;
+        border-radius: 5px;
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 1px;
+        transition: .2s;
+    }
+
+    .auth-tabs button:hover {
+        color: #172b22;
+    }
+
+    .auth-tabs button:focus {
+        background: #172b22;
+        color: #b6e878;
+        outline: none;
+    }
+
+    .form-group-custom {
+        margin-bottom: 17px;
+    }
+
+    .form-label-custom {
+        display: block;
+        color: #263b2d;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+    }
+
+    .form-control,
+    .form-select {
+        border: 1px solid #dce4da;
+        border-radius: 6px;
+        padding: 12px 14px;
+        color: #263b2d;
+        font-size: 14px;
+        background-color: #fafbf9;
+        transition: .2s;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #8dbd42;
+        box-shadow: 0 0 0 3px rgba(141, 189, 66, .15);
+        background-color: white;
+    }
+
+    .btn-auth {
+        background: #8dbd42;
+        color: #172b22;
+        border: none;
+        border-radius: 5px;
+        padding: 14px;
+        width: 100%;
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 1.5px;
+        margin-top: 10px;
+        transition: .2s;
+    }
+
+    .btn-auth:hover {
+        background: #172b22;
+        color: #b6e878;
+        transform: translateY(-2px);
+    }
+
+    @@media (max-width: 767px) {
+        .auth-banner {
+            padding: 35px 25px;
+            min-height: auto;
+        }
+
+        .brand-heading {
+            font-size: 2.7rem;
+        }
+
+        .auth-content {
+            padding: 30px 25px;
+        }
+    }
+</style>
+
+<div class="auth-wrapper">
+    <div class="auth-card">
+
+        <div class="row g-0">
+
+            <!-- BRAND SECTION -->
+            <div class="col-md-5">
+
+                <div class="auth-banner">
+
+                    <div class="brand-label">
+                        SPORT • COMMUNITY • COMPETITION
+                    </div>
+
+                    <h1 class="brand-heading">
+                        Race<span>Day.</span>
+                    </h1>
+
+                    <div class="brand-accent"></div>
+
+                    <p class="brand-description">
+                        Every race has a starting line.
+                        Every athlete has a story.
+
+                        Join the community, compete in events
+                        and track your sporting journey.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- LOGIN / REGISTER SECTION -->
+            <div class="col-md-7">
+
+                <div class="auth-content">
+
+                    <div class="sport-label">
+                        WELCOME TO RACEDAY
+                    </div>
+
+                    <h2 class="auth-heading">
+                        Get Started.
+                    </h2>
+
+                    <p class="auth-subtitle">
+                        Access your account or join the community.
+                    </p>
+
+                    <!-- EXISTING BUTTONS -->
+                    <div class="auth-tabs">
+
+                        <button id="logBut" type="button">
+                            Login
+                        </button>
+
+                        <button id="regBut" type="button">
+                            Register
+                        </button>
+
+                    </div>
+
+                    <!-- REGISTER FORM -->
+                    <div id="regForm" class="d-block">
+
+                        <Form asp-action="Register" method="post">
+
+                            <div class="form-group-custom">
+                                <lable class="form-label-custom">Name</lable>
+                                <input asp-for="Name"
+                                       class="form-control w-100" />
+                            </div>
+
+                            <div class="form-group-custom">
+                                <lable class="form-label-custom">Surname</lable>
+                                <input asp-for="Surname"
+                                       class="form-control w-100" />
+                            </div>
+
+                            <div class="form-group-custom">
+                                <lable class="form-label-custom">Access</lable>
+                                <select asp-for="Access"
+                                        class="form-select w-100">
+                                    <option value="Participant">Participant</option>
+                                    <option value="Organiser">Organiser</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-custom">
+                                <lable class="form-label-custom">Password</lable>
+                                <input asp-for="Password"
+                                       class="form-control w-100" />
+                            </div>
+
+                            <button type="submit" class="btn-auth">
+                                REGISTER
+                            </button>
+
+                        </Form>
+
+                    </div>
+
+                    <!-- LOGIN FORM -->
+                    <div id="logForm" class="d-none">
+
+                        <Form asp-action="Login" method="post">
+
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-group-custom">
+                                <lable class="form-label-custom">Name</lable>
+                                <input asp-for="Name"
+                                       class="form-control w-100" />
+                            </div>
+
+                            <div class="form-group-custom">
+                                <lable class="form-label-custom">Surname</lable>
+                                <input asp-for="Surname"
+                                       class="form-control w-100" />
+                            </div>
+
+                            <div class="form-group-custom">
+                                <lable class="form-label-custom">Password</lable>
+                                <input asp-for="Password"
+                                       class="form-control w-100" />
+                            </div>
+
+                            <button type="submit" class="btn-auth">
+                                LOGIN
+                            </button>
+
+                        </Form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 </div>
- @section  Scripts {
-	<script type="text/javascript" src="~/js/site.js" asp-append-version="true"></script>
+
+@section Scripts {
+    <script type="text/javascript"
+            src="~/js/site.js"
+            asp-append-version="true">
+    </script>
 }

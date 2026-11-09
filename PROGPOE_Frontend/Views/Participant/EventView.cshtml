@@ -1,21 +1,246 @@
-﻿
-@model PROGPOE_Frontend.Models.Event
+﻿@model PROGPOE_Frontend.Models.Event
 
+@{
+    ViewData["Title"] = "Event Details";
+}
 
-<h2>Event Name: @Model.EventName</h2>
+<style>
+    body {
+        background-color: #f4f6f3;
+    }
 
-<table class="table">
-    <tr>
-        <th>Location: @Model.Location</th>
-    </tr>
-        <tr>
-        <th>Description: @Model.Description</th>
-    </tr>
-        <tr>
-        <th>Date: @Model.Date</th>
-    </tr>
-        <tr>
-        <th>Type: @Model.Type</th>
-    </tr>
-    <a asp-action="JoinEvent" asp-route-id="@Model.EventID">Join</a>
-</table>
+    .events-wrapper {
+        min-height: 100vh;
+        padding: 50px 0;
+    }
+
+    .sport-label {
+        color: #85ad42;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 3px;
+    }
+
+    .events-heading {
+        font-weight: 900;
+        font-size: clamp(2rem, 5vw, 2.8rem);
+        color: #172b22;
+        letter-spacing: -1.5px;
+    }
+
+    .events-heading span {
+        color: #8dbd42;
+    }
+
+    .events-subtitle {
+        color: #7b877f;
+    }
+
+    .event-details-card {
+        background: white;
+        border: 1px solid #e7ece5;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .event-card-header {
+        background: #172b22;
+        padding: 30px;
+        color: white;
+        border-bottom: 4px solid #8dbd42;
+    }
+
+    .event-card-header h3 {
+        font-weight: 900;
+        font-size: 25px;
+        margin-bottom: 8px;
+    }
+
+    .event-card-header p {
+        color: #b6e878;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-bottom: 0;
+    }
+
+    .event-info {
+        padding: 30px;
+    }
+
+    .detail-item {
+        padding: 18px 0;
+        border-bottom: 1px solid #edf0eb;
+    }
+
+    .detail-item:last-child {
+        border-bottom: none;
+    }
+
+    .detail-label {
+        color: #91a095;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 7px;
+    }
+
+    .detail-value {
+        color: #263b2d;
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+
+    .event-description {
+        line-height: 1.7;
+        white-space: pre-line;
+    }
+
+    .btn-join {
+        background: #8dbd42;
+        color: #172b22;
+        border: none;
+        border-radius: 6px;
+        padding: 14px 25px;
+        font-weight: 900;
+        font-size: 13px;
+        letter-spacing: 1px;
+        transition: .2s;
+    }
+
+    .btn-join:hover {
+        background: #172b22;
+        color: #b6e878;
+        transform: translateY(-2px);
+    }
+
+    .btn-back {
+        background: white;
+        color: #263b2d;
+        border: 1px solid #dce4da;
+        border-radius: 6px;
+        padding: 13px 22px;
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+        transition: .2s;
+    }
+
+    .btn-back:hover {
+        background: #172b22;
+        color: #b6e878;
+    }
+
+</style>
+
+<div class="events-wrapper">
+    <div class="container">
+
+        <!-- PAGE HEADER -->
+        <div class="mb-4">
+
+            <div class="sport-label mb-2">
+                COMPETE • CONNECT • ACHIEVE
+            </div>
+
+            <h1 class="events-heading">
+                Event <span>Details.</span>
+            </h1>
+
+            <p class="events-subtitle">
+                Everything you need to know before joining the action.
+            </p>
+
+        </div>
+
+        <!-- EVENT CARD -->
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8 col-xl-7">
+
+                <div class="event-details-card shadow-sm">
+
+                    <!-- CARD HEADER -->
+                    <div class="event-card-header">
+
+                        <p class="mb-2">FEATURED EVENT</p>
+
+                        <h3>@Model.EventName</h3>
+
+                        <p>YOUR NEXT CHALLENGE STARTS HERE</p>
+
+                    </div>
+
+                    <!-- EVENT INFORMATION -->
+                    <div class="event-info">
+
+                        <div class="detail-item">
+
+                            <div class="detail-label">
+                                Location
+                            </div>
+
+                            <p class="detail-value">
+                                @Model.Location
+                            </p>
+
+                        </div>
+
+                        <div class="detail-item">
+
+                            <div class="detail-label">
+                                Description
+                            </div>
+
+                            <p class="detail-value event-description">
+                                @Model.Description
+                            </p>
+
+                        </div>
+
+                        <div class="detail-item">
+
+                            <div class="detail-label">
+                                Event Date
+                            </div>
+
+                            <p class="detail-value">
+                                @Model.Date
+                            </p>
+
+                        </div>
+
+                        <div class="detail-item">
+
+                            <div class="detail-label">
+                                Event Type
+                            </div>
+
+                            <p class="detail-value">
+                                @Model.Type
+                            </p>
+
+                        </div>
+
+                        <!-- ACTION BUTTONS -->
+                        <div class="d-flex flex-wrap gap-3 mt-4">
+
+                            <a asp-action="JoinEvent"
+                               asp-route-id="@Model.EventID"
+                               class="btn btn-join">
+                                JOIN EVENT →
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

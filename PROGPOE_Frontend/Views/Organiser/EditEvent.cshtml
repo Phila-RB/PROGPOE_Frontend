@@ -1,17 +1,205 @@
 ﻿@model PROGPOE_Frontend.Models.Event
-<div>
-	<Form asp-action="Update" method="post">
-		<input type="hidden" id="EventID" asp-for="EventID" value="@Model.EventID"/> 
-		<lable>Event Name</lable>
-		<input id="name" asp-for="EventName"/> <br />
-		<lable>Location</lable>
-		<input id="location" asp-for="Location"/> <br />
-		<lable>Description</lable>
-		<input id="description" asp-for="Description"/> <br />
-		<lable>Date</lable>
-		<input id="date" asp-for="Date"/> <br />
-		<lable>Type</lable>
-		<input id="type" asp-for="Type"/> <br />
-		<button type="submit">Update</button>
-	</Form>
-</div
+
+<style>
+    body {
+        background-color: #f4f6f3;
+    }
+
+    .events-wrapper {
+        min-height: 100vh;
+        padding: 50px 0;
+    }
+
+    .sport-label {
+        color: #85ad42;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 3px;
+    }
+
+    .events-heading {
+        font-weight: 900;
+        font-size: 2.8rem;
+        color: #172b22;
+        letter-spacing: -1.5px;
+    }
+
+    .events-heading span {
+        color: #8dbd42;
+    }
+
+    .events-subtitle {
+        color: #7b877f;
+    }
+
+    .profile-card {
+        background: white;
+        border: 1px solid #e7ece5;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .profile-header {
+        background: #172b22;
+        color: white;
+        padding: 25px 30px;
+        border-bottom: 4px solid #8dbd42;
+    }
+
+    .profile-header h4 {
+        font-weight: 900;
+        margin-bottom: 5px;
+    }
+
+    .profile-header p {
+        color: #b6e878;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-bottom: 0;
+    }
+
+    .profile-body {
+        padding: 30px;
+    }
+
+    .form-group-custom {
+        margin-bottom: 22px;
+    }
+
+    .form-label-custom {
+        display: block;
+        color: #263b2d;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        margin-bottom: 9px;
+    }
+
+    .form-control {
+        border: 1px solid #dce4da;
+        border-radius: 6px;
+        padding: 12px 14px;
+        color: #263b2d;
+        font-size: 14px;
+        background-color: #fafbf9;
+        transition: .2s;
+    }
+
+    .form-control:focus {
+        border-color: #8dbd42;
+        box-shadow: 0 0 0 3px rgba(141, 189, 66, .15);
+        background-color: white;
+    }
+
+    .btn-update {
+        background: #8dbd42;
+        color: #172b22;
+        border: none;
+        border-radius: 5px;
+        padding: 13px 25px;
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 1px;
+        transition: .2s;
+    }
+
+    .btn-update:hover {
+        background: #172b22;
+        color: #b6e878;
+        transform: translateY(-2px);
+    }
+</style>
+
+<div class="events-wrapper">
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="mb-5">
+
+            <div class="sport-label mb-2">
+                MANAGE • IMPROVE • ORGANISE
+            </div>
+
+            <h1 class="events-heading">
+                Update <span>Event.</span>
+            </h1>
+
+            <p class="events-subtitle">
+                Edit your sporting event information.
+            </p>
+
+        </div>
+
+        <!-- FORM -->
+        <div class="row justify-content-center">
+
+            <div class="col-lg-7 col-xl-6">
+
+                <div class="profile-card shadow-sm">
+
+                    <div class="profile-header">
+                        <h4>Event Information</h4>
+                        <p>UPDATE EVENT DETAILS</p>
+                    </div>
+
+                    <div class="profile-body">
+
+                        <Form asp-action="Update" method="post">
+
+                            <input type="hidden"
+                                   id="EventID"
+                                   asp-for="EventID"
+                                   value="@Model.EventID" />
+
+                            <div class="form-group-custom">
+                                <lable class="form-label-custom">Event Name</lable>
+                                <input id="name"
+                                       asp-for="EventName"
+                                       class="form-control w-100" />
+                            </div>
+
+                            <div class="form-group-custom">
+                                <lable class="form-label-custom">Location</lable>
+                                <input id="location"
+                                       asp-for="Location"
+                                       class="form-control w-100" />
+                            </div>
+
+                            <div class="form-group-custom">
+                                <lable class="form-label-custom">Description</lable>
+                                <input id="description"
+                                       asp-for="Description"
+                                       class="form-control w-100" />
+                            </div>
+
+                            <div class="form-group-custom">
+                                <lable class="form-label-custom">Date</lable>
+                                <input id="date"
+                                       asp-for="Date"
+                                       class="form-control w-100" />
+                            </div>
+
+                            <div class="form-group-custom">
+                                <lable class="form-label-custom">Type</lable>
+                                <input id="type"
+                                       asp-for="Type"
+                                       class="form-control w-100" />
+                            </div>
+
+                            <button type="submit" class="btn btn-update w-100">
+                                Update
+                            </button>
+
+                        </Form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -1,15 +1,148 @@
-﻿@model IEnumerable<PROGPOE_Frontend.Models.Participant>
+﻿@model IEnumerable<PROGPOE_Frontend.Models.ParticipantRes>
 
-<div>
-    <h2>Events Joined</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Event</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+<style>
+    body {
+        background-color: #f4f6f3;
+    }
+
+    .events-wrapper {
+        min-height: 100vh;
+        padding: 50px 0;
+    }
+
+    .sport-label {
+        color: #85ad42;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 3px;
+    }
+
+    .events-heading {
+        font-weight: 900;
+        font-size: 2.8rem;
+        color: #172b22;
+        letter-spacing: -1.5px;
+    }
+
+    .events-heading span {
+        color: #8dbd42;
+    }
+
+    .events-subtitle {
+        color: #7b877f;
+    }
+
+    .section-title {
+        color: #263b2d;
+        font-weight: 800;
+    }
+
+    .participant-card {
+        background: white;
+        border: 1px solid #e7ece5;
+        border-radius: 10px;
+        transition: .2s ease;
+        height: 100%;
+    }
+
+    .participant-card:hover {
+        transform: translateY(-4px);
+        border-color: #9bc65b;
+        box-shadow: 0 10px 20px rgba(0,0,0,.06);
+    }
+
+    .participant-number {
+        color: #91b75c;
+        font-size: 11px;
+        font-weight: 900;
+        letter-spacing: 2px;
+        margin-bottom: 12px;
+    }
+
+    .participant-name {
+        color: #172b22;
+        font-size: 17px;
+        font-weight: 900;
+        margin-bottom: 8px;
+    }
+
+    .participant-id {
+        color: #7b877f;
+        font-size: 13px;
+        margin-bottom: 0;
+    }
+
+    .participant-list {
+        background: white;
+        border: 1px solid #e7ece5;
+        border-radius: 10px;
+        padding: 25px;
+    }
+</style>
+
+<div class="events-wrapper">
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="mb-5">
+
+            <div class="sport-label mb-2">
+                TEAM • COMMUNITY • COMPETITION
+            </div>
+
+            <h1 class="events-heading">
+                Event <span>Participants.</span>
+            </h1>
+
+            <p class="events-subtitle">
+                View the participants registered for your event.
+            </p>
+
+        </div>
+
+        <!-- PARTICIPANTS -->
+        <div class="mb-3">
+            <h5 class="section-title">
+                Registered Participants
+            </h5>
+        </div>
+
+        <div class="participant-list shadow-sm">
+
+            <div class="row g-3">
+
+                @{
+                    int index = 1;
+                }
+
+                @foreach (var res in Model)
+                {
+                    <div class="col-sm-6 col-lg-4 col-xl-3">
+
+                        <div class="participant-card p-4">
+
+                            <div class="participant-number">
+                                PARTICIPANT / @index.ToString("00")
+                            </div>
+
+                            <h5 class="participant-name">
+                                @res.Name
+                            </h5>
+
+                            <p class="participant-id">
+                                ID: @res.ParticipantID
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    index++;
+                }
+
+            </div>
+
+        </div>
+
+    </div>
 </div>

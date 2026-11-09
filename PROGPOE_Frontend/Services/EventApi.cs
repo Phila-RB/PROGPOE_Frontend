@@ -339,5 +339,29 @@ namespace PROGPOE_Frontend.Services
             //Console.WriteLine(await res.Content.ReadFromJsonAsync<List<Event>>());
             return await res.Content.ReadFromJsonAsync<List<SignedUpResponse>>();
         }
+
+        [Authorize(Roles = "Organiser")]
+        [HttpGet]
+        public async Task<List<ParticipantRes>> GetParticipants(int id)
+    {
+        var token = await _httpContextAccessor.HttpContext!.GetTokenAsync("access_token");
+
+        using var request = new HttpRequestMessage(
+            HttpMethod.Get,
+            $"api/events/{id}/participants"
+        );
+
+        request.Headers.Authorization =
+            new AuthenticationHeaderValue("Bearer", token);
+
+        var res = await _httpClient.SendAsync(request);
+
+        if (res == null)
+        {
+            return new List<ParticipantRes> { };
+        }
+        //Console.WriteLine(await res.Content.ReadFromJsonAsync<List<Event>>());
+        return await res.Content.ReadFromJsonAsync<List<ParticipantRes>>();
     }
+}
 }

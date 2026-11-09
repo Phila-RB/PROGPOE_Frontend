@@ -1,11 +1,177 @@
 ﻿@model PROGPOE_Frontend.Models.User
 
-<div>
-	<div id="regForm" class="d-block">
-		<lable>Name: @Model.Name</lable><br />
-		<lable>Surname: @Model.Surname</lable><br />
-		<lable>Access: @Model.Access</lable><br />
-		<lable>Password: **************</lable><br />
-		<a asp-action="UpdateProfile">Update Details</a>
-	</div>
-</div
+<style>
+    body {
+        background-color: #f4f6f3;
+    }
+
+    .events-wrapper {
+        min-height: 100vh;
+        padding: 50px 0;
+    }
+
+    .sport-label {
+        color: #85ad42;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 3px;
+    }
+
+    .events-heading {
+        font-weight: 900;
+        font-size: 2.8rem;
+        color: #172b22;
+        letter-spacing: -1.5px;
+    }
+
+    .events-heading span {
+        color: #8dbd42;
+    }
+
+    .events-subtitle {
+        color: #7b877f;
+    }
+
+    .profile-card {
+        background: white;
+        border: 1px solid #e7ece5;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: .25s ease;
+    }
+
+    .profile-header {
+        background: #172b22;
+        padding: 30px;
+        border-bottom: 4px solid #8dbd42;
+        color: white;
+    }
+
+    .profile-header h4 {
+        font-weight: 900;
+        margin-bottom: 5px;
+    }
+
+    .profile-header p {
+        color: #b6e878;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-bottom: 0;
+    }
+
+    .profile-body {
+        padding: 30px;
+    }
+
+    .profile-detail {
+        padding: 18px 0;
+        border-bottom: 1px solid #edf0eb;
+    }
+
+    .profile-detail:last-child {
+        border-bottom: none;
+    }
+
+    .detail-label {
+        color: #91a095;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 7px;
+        display: block;
+    }
+
+    .detail-value {
+        color: #263b2d;
+        font-size: 16px;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    .btn-profile {
+        background: #8dbd42;
+        color: #172b22;
+        border: none;
+        border-radius: 5px;
+        padding: 13px 25px;
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 1px;
+        text-decoration: none;
+        display: inline-block;
+        transition: .2s;
+    }
+
+    .btn-profile:hover {
+        background: #172b22;
+        color: #b6e878;
+        transform: translateY(-2px);
+    }
+</style>
+
+<div class="events-wrapper">
+    <div class="container">
+
+        <div class="mb-5">
+            <div class="sport-label mb-2">
+                YOUR ACCOUNT • YOUR JOURNEY
+            </div>
+
+            <h1 class="events-heading">
+                My <span>Profile.</span>
+            </h1>
+
+            <p class="events-subtitle">
+                Manage your personal information and account details.
+            </p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-xl-6">
+
+                <div id="regForm" class="profile-card shadow-sm d-block">
+
+                    <div class="profile-header">
+                        <h4>Account Information</h4>
+                        <p>PERSONAL PROFILE</p>
+                    </div>
+
+                    <div class="profile-body">
+
+                        <div class="profile-detail">
+                            <label class="detail-label">Name</label>
+                            <p class="detail-value">@Model.Name</p>
+                        </div>
+
+                        <div class="profile-detail">
+                            <label class="detail-label">Surname</label>
+                            <p class="detail-value">@Model.Surname</p>
+                        </div>
+
+                        <div class="profile-detail">
+                            <label class="detail-label">Access</label>
+                            <p class="detail-value">@Model.Access</p>
+                        </div>
+
+                        <div class="profile-detail">
+                            <label class="detail-label">Password</label>
+                            <p class="detail-value">**************</p>
+                        </div>
+
+                        <div class="mt-4">
+                            <a asp-action="UpdateProfile"
+                               class="btn btn-profile">
+                                UPDATE DETAILS →
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

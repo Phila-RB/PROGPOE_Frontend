@@ -95,10 +95,15 @@ namespace PROGPOE_Frontend.Controllers
             return View();
         }
 
-        public async Task<IActionResult> CreateResults(User user)
+        public async Task<IActionResult> CreateResults(ParticipantResults results)
         {
-            var res = await _EventApi.UpdateP(user);
+            var res = await _EventApi.CreateNewResults(results);
             return RedirectToAction("Home", "Organiser");
+        }
+        public async Task<IActionResult> Participants(int id)
+        {
+            var res = await _EventApi.GetParticipants(id);
+            return View(res);
         }
     }
 }

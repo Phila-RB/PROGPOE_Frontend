@@ -1,22 +1,144 @@
 ﻿@model IEnumerable<PROGPOE_Frontend.Models.Category>
 
-<div>
-	<table class="table">
-    <thead>
-        <tr>
-            <th>Categories</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var cat in Model)
-        {
-            <tr>
-                <td>
-                    <input type="hidden" name="CategoryID" value="@cat.CategoryID" />
-                    <p>@cat.CategoryName</p>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<style>
+    body {
+        background-color: #f4f6f3;
+    }
+
+    .events-wrapper {
+        min-height: 100vh;
+        padding: 50px 0;
+    }
+
+    .sport-label {
+        color: #85ad42;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 3px;
+    }
+
+    .events-heading {
+        font-weight: 900;
+        font-size: 2.8rem;
+        color: #172b22;
+        letter-spacing: -1.5px;
+    }
+
+    .events-heading span {
+        color: #8dbd42;
+    }
+
+    .events-subtitle {
+        color: #7b877f;
+    }
+
+    .category-card {
+        background: white;
+        border: 1px solid #e7ece5;
+        border-radius: 10px;
+        height: 100%;
+        transition: .25s ease;
+    }
+
+    .category-card:hover {
+        transform: translateY(-5px);
+        border-color: #9bc65b;
+        box-shadow: 0 12px 25px rgba(0,0,0,.08);
+    }
+
+    .category-number {
+        color: #91b75c;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 2px;
+    }
+
+    .category-title {
+        font-size: 19px;
+        font-weight: 800;
+        color: #1c3024;
+        margin-bottom: 0;
+    }
+
+    .section-title {
+        color: #263b2d;
+        font-weight: 800;
+    }
+
+    .category-count {
+        color: #89948b;
+        font-size: 12px;
+        font-weight: 700;
+    }
+</style>
+
+<div class="events-wrapper">
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="mb-5">
+
+            <div class="sport-label mb-2">
+                EXPLORE • DISCOVER • COMPETE
+            </div>
+
+            <h1 class="events-heading">
+                Event <span>Categories.</span>
+            </h1>
+
+            <p class="events-subtitle">
+                Explore the available categories for this competition.
+            </p>
+
+        </div>
+
+        <!-- CATEGORY SECTION -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+
+            <h5 class="section-title mb-0">
+                Available Categories
+            </h5>
+
+            <span class="category-count">
+                CATEGORIES
+            </span>
+
+        </div>
+
+        <div class="row g-4">
+
+            @{
+                int index = 1;
+            }
+
+            @foreach (var cat in Model)
+            {
+                <div class="col-sm-6 col-lg-4 col-xl-3">
+
+                    <div class="card category-card shadow-sm">
+
+                        <div class="card-body p-4">
+
+                            <div class="category-number mb-4">
+                                CATEGORY / @index.ToString("00")
+                            </div>
+
+                            <input type="hidden" name="CategoryID" value="@cat.CategoryID" />
+
+                            <p class="category-title">
+                                @cat.CategoryName
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                index++;
+            }
+
+        </div>
+
+    </div>
 </div>

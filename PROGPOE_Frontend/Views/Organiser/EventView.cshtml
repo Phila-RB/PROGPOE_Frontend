@@ -1,26 +1,263 @@
-﻿
-@model PROGPOE_Frontend.Models.Event
+﻿@model PROGPOE_Frontend.Models.Event
 
-<h2>Event ID: @Model.EventID</h2>
-<h2>Event Name: @Model.EventName</h2>
-@* <input type="hidden" Name="EventID" value="@Model.EventID" /> *@
-<table class="table">
-    <tr>
-        <th>Location: @Model.Location</th>
-    </tr>
-        <tr>
-        <th>Description: @Model.Description</th>
-    </tr>
-        <tr>
-        <th>Date: @Model.Date</th>
-    </tr>
-        <tr>
-        <th>Type: @Model.Type</th>
-    </tr>
-</table>
-<a asp-action="EditEvent" asp-route-id="@Model.EventID">Edit</a>
-<a asp-action="CreateCategory" class="btn btn-primary">Create Category</a>
-<form asp-action="DeleteEvent" asp-route-id="@Model.EventID" method="post">
-    <input type="hidden" name="_method" value="DELETE" />
-	<button type="submit">Delete</button>
-</form>
+<style>
+    body {
+        background-color: #f4f6f3;
+    }
+
+    .events-wrapper {
+        min-height: 100vh;
+        padding: 50px 0;
+    }
+
+    .sport-label {
+        color: #85ad42;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 3px;
+    }
+
+    .events-heading {
+        font-weight: 900;
+        font-size: 2.8rem;
+        color: #172b22;
+        letter-spacing: -1.5px;
+    }
+
+    .events-heading span {
+        color: #8dbd42;
+    }
+
+    .events-subtitle {
+        color: #7b877f;
+    }
+
+    .event-card {
+        background: white;
+        border: 1px solid #e7ece5;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .event-header {
+        background: #172b22;
+        color: white;
+        padding: 30px;
+        border-bottom: 4px solid #8dbd42;
+    }
+
+    .event-header h3 {
+        font-weight: 900;
+        margin-bottom: 8px;
+    }
+
+    .event-header p {
+        color: #b6e878;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-bottom: 0;
+    }
+
+    .event-body {
+        padding: 30px;
+    }
+
+    .detail-item {
+        padding: 18px 0;
+        border-bottom: 1px solid #edf0eb;
+    }
+
+    .detail-item:last-child {
+        border-bottom: none;
+    }
+
+    .detail-label {
+        color: #91a095;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 7px;
+    }
+
+    .detail-value {
+        color: #263b2d;
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+
+    .action-section {
+        border-top: 1px solid #edf0eb;
+        padding-top: 25px;
+        margin-top: 15px;
+    }
+
+    .btn-action {
+        background: #172b22;
+        color: #b6e878;
+        border: none;
+        border-radius: 5px;
+        padding: 12px 20px;
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 1px;
+        text-decoration: none;
+        display: inline-block;
+        transition: .2s;
+    }
+
+    .btn-action:hover {
+        background: #8dbd42;
+        color: #172b22;
+        transform: translateY(-2px);
+    }
+
+    .btn-create {
+        background: #8dbd42;
+        color: #172b22;
+        border: none;
+        border-radius: 5px;
+        padding: 12px 20px;
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 1px;
+        text-decoration: none;
+        display: inline-block;
+        transition: .2s;
+    }
+
+    .btn-create:hover {
+        background: #172b22;
+        color: #b6e878;
+    }
+
+    .btn-delete {
+        background: #fff;
+        color: #b44444;
+        border: 1px solid #e5caca;
+        border-radius: 5px;
+        padding: 12px 20px;
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 1px;
+        transition: .2s;
+    }
+
+    .btn-delete:hover {
+        background: #b44444;
+        color: white;
+        border-color: #b44444;
+    }
+</style>
+
+<div class="events-wrapper">
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="mb-5">
+
+            <div class="sport-label mb-2">
+                ORGANISE • MANAGE • COMPETE
+            </div>
+
+            <h1 class="events-heading">
+                Manage <span>Event.</span>
+            </h1>
+
+            <p class="events-subtitle">
+                View and manage your sporting event information.
+            </p>
+
+        </div>
+
+        <!-- EVENT DETAILS -->
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8 col-xl-7">
+
+                <div class="event-card shadow-sm">
+
+                    <div class="event-header">
+
+                        <p class="mb-2">EVENT ID: @Model.EventID</p>
+
+                        <h3>@Model.EventName</h3>
+
+                        <p>EVENT MANAGEMENT</p>
+
+                    </div>
+
+                    <div class="event-body">
+
+                        <div class="detail-item">
+                            <div class="detail-label">Location</div>
+                            <p class="detail-value">@Model.Location</p>
+                        </div>
+
+                        <div class="detail-item">
+                            <div class="detail-label">Description</div>
+                            <p class="detail-value">@Model.Description</p>
+                        </div>
+
+                        <div class="detail-item">
+                            <div class="detail-label">Date</div>
+                            <p class="detail-value">@Model.Date</p>
+                        </div>
+
+                        <div class="detail-item">
+                            <div class="detail-label">Type</div>
+                            <p class="detail-value">@Model.Type</p>
+                        </div>
+
+                        <!-- EXISTING ACTIONS -->
+                        <div class="action-section">
+
+                            <div class="d-flex flex-wrap gap-2 mb-3">
+
+                                <a asp-action="EditEvent"
+                                   asp-route-id="@Model.EventID"
+                                   class="btn-action">
+                                    EDIT EVENT
+                                </a>
+
+                                <a asp-action="CreateCategory"
+                                   class="btn-create">
+                                    CREATE CATEGORY
+                                </a>
+
+                                <a asp-action="Participants"
+                                   asp-route-id="@Model.EventID"
+                                   class="btn-action">
+                                    VIEW PARTICIPANTS
+                                </a>
+
+                            </div>
+
+                            <form asp-action="DeleteEvent"
+                                  asp-route-id="@Model.EventID"
+                                  method="post">
+
+                                <input type="hidden"
+                                       name="_method"
+                                       value="DELETE" />
+
+                                <button type="submit" class="btn-delete">
+                                    DELETE EVENT
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -1,27 +1,242 @@
 ﻿@model IEnumerable<PROGPOE_Frontend.Models.Category>
 
-<div>
-	<table class="table">
-    <thead>
-        <tr>
-            <th>Categories</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var cat in Model)
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<style>
+    body {
+        background-color: #f4f6f3;
+    }
+
+    .events-wrapper {
+        min-height: 100vh;
+        padding: 50px 0;
+    }
+
+    .events-heading {
+        font-weight: 900;
+        font-size: 2.8rem;
+        color: #172b22;
+        letter-spacing: -1.5px;
+    }
+
+    .events-heading span {
+        color: #8dbd42;
+    }
+
+    .events-subtitle {
+        color: #7b877f;
+    }
+
+    .sport-label {
+        color: #85ad42;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 3px;
+    }
+
+    .nav-sport-btn {
+        border-radius: 6px;
+        padding: 10px 18px;
+        font-size: 13px;
+        font-weight: 700;
+        border: 1px solid #dce4da;
+        background: white;
+        color: #263b2d;
+        transition: .2s;
+    }
+
+    .nav-sport-btn:hover {
+        background: #172b22;
+        color: #b6e878;
+        border-color: #172b22;
+    }
+
+    .category-card {
+        border: 1px solid #e7ece5;
+        border-radius: 10px;
+        transition: .25s ease;
+        background: white;
+        height: 100%;
+    }
+
+    .category-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0,0,0,.08);
+        border-color: #9bc65b;
+    }
+
+    .category-number {
+        color: #91b75c;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 2px;
+    }
+
+    .category-title {
+        font-size: 19px;
+        font-weight: 800;
+        color: #1c3024;
+        min-height: 48px;
+    }
+
+    .btn-category {
+        background: #172b22;
+        color: #b6e878;
+        border: none;
+        border-radius: 5px;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        padding: 12px;
+        transition: .2s;
+    }
+
+    .btn-category:hover {
+        background: #8dbd42;
+        color: #172b22;
+    }
+
+    .section-title {
+        font-weight: 800;
+        color: #263b2d;
+    }
+
+    .category-count {
+        color: #89948b;
+        font-size: 12px;
+        font-weight: 700;
+    }
+</style>
+
+<div class="events-wrapper">
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="row align-items-center mb-5">
+
+            <div class="col-lg-6 mb-4 mb-lg-0">
+
+                <div class="sport-label mb-2">
+                    FIND YOUR GAME • CHOOSE YOUR CHALLENGE
+                </div>
+
+                <h1 class="events-heading">
+                    Explore <span>Categories.</span>
+                </h1>
+
+                <p class="events-subtitle mb-0">
+                    Discover different sporting categories and find your competition.
+                </p>
+
+            </div>
+
+            <!-- NAVIGATION -->
+            <div class="col-lg-6">
+
+                <div class="d-flex flex-wrap gap-2 justify-content-lg-end">
+
+                    <a asp-action="Events"
+                       class="btn nav-sport-btn">
+                        Events
+                    </a>
+
+                    <a asp-action="SignedUp"
+                       class="btn nav-sport-btn">
+                        My Events
+                    </a>
+
+                    <a asp-action="Results"
+                       class="btn nav-sport-btn">
+                        Results
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CATEGORY SECTION -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+
+            <h5 class="section-title mb-0">
+                Available Categories
+            </h5>
+
+            <span class="category-count">
+                @(Model?.Count() ?? 0) CATEGORIES
+            </span>
+
+        </div>
+
+        @if (Model != null && Model.Any())
         {
-            <tr>
-                <td>
-                    <Form asp-action="something" method="get">
-                        @Html.AntiForgeryToken()
-                        <input type="hidden" name="CategoryID" value="@cat.CategoryID" />
-                        <button type="submit">
-                            @cat.CategoryName
-                        </button>
-                    </Form>
-                </td>
-            </tr>
+            <div class="row g-4">
+
+                @{
+                    int index = 1;
+                }
+
+                @foreach (var cat in Model)
+                {
+                    <div class="col-sm-6 col-lg-4 col-xl-3">
+
+                        <div class="card category-card shadow-sm">
+
+                            <div class="card-body p-4">
+
+                                <div class="category-number mb-4">
+                                    CATEGORY / @index.ToString("00")
+                                </div>
+
+                                <h5 class="category-title mb-4">
+                                    @cat.CategoryName
+                                </h5>
+
+                                <form asp-action="something" method="get">
+
+                                    <input type="hidden"
+                                           name="CategoryID"
+                                           value="@cat.CategoryID" />
+
+                                    <button type="submit"
+                                            class="btn btn-category w-100">
+                                        EXPLORE CATEGORY →
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    index++;
+                }
+
+            </div>
         }
-    </tbody>
-</table>
+        else
+        {
+            <div class="card border-0 shadow-sm text-center p-5">
+
+                <div class="card-body">
+
+                    <h5 class="fw-bold">
+                        No categories available
+                    </h5>
+
+                    <p class="text-muted mb-0">
+                        Check back soon for available sporting categories.
+                    </p>
+
+                </div>
+
+            </div>
+        }
+
+    </div>
 </div>

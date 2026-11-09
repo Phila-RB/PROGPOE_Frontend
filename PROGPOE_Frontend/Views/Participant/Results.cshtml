@@ -1,38 +1,198 @@
 ﻿@model IEnumerable<PROGPOE_Frontend.Models.ParticipantResultsResponse>
 
-<div>
-    <h2>Results</h2>
-	<table class="table">
-    <thead>
-        <tr>
-            <th>Event</th>
-            <th>Date</th>
-            <th>Category</th>
-            <th>Finish time</th>
-            <th>Position</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var res in Model)
-        {
-            <tr>
-                <td>
-                    @res.EventName 
-                </td>
-                <td>
-                    @res.Date
-                </td>
-                <td>
-                    @res.Category
-                </td>
-                <td>
-                    @res.Time
-                </td>
-                <td>
-                    @res.Placement 
-                </td>
-            </tr>
+<style>
+    body {
+        background-color: #f4f6f3;
+    }
+
+    .events-wrapper {
+        min-height: 100vh;
+        padding: 50px 0;
+    }
+
+    .sport-label {
+        color: #85ad42;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 3px;
+    }
+
+    .events-heading {
+        font-weight: 900;
+        font-size: 2.8rem;
+        color: #172b22;
+        letter-spacing: -1.5px;
+    }
+
+    .events-heading span {
+        color: #8dbd42;
+    }
+
+    .events-subtitle {
+        color: #7b877f;
+    }
+
+    .results-card {
+        background: white;
+        border: 1px solid #e7ece5;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .results-table {
+        margin-bottom: 0;
+        vertical-align: middle;
+    }
+
+    .results-table thead {
+        background: #172b22;
+        color: white;
+    }
+
+    .results-table thead th {
+        padding: 18px 20px;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        white-space: nowrap;
+        border: none;
+    }
+
+    .results-table tbody td {
+        padding: 18px 20px;
+        color: #263b2d;
+        font-size: 14px;
+        font-weight: 500;
+        border-color: #edf0eb;
+    }
+
+    .results-table tbody tr {
+        transition: .2s ease;
+    }
+
+    .results-table tbody tr:hover {
+        background-color: #f3f8ed;
+    }
+
+    .results-table tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    .event-name {
+        font-weight: 800 !important;
+        color: #172b22 !important;
+    }
+
+    .position-value {
+        color: #6e9e31 !important;
+        font-weight: 900 !important;
+    }
+
+    .section-title {
+        color: #263b2d;
+        font-weight: 800;
+    }
+
+    .results-count {
+        color: #89948b;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    @@media (max-width: 768px) {
+        .results-table thead th,
+        .results-table tbody td {
+            padding: 14px 12px;
         }
-    </tbody>
-</table>
+
+        .table-responsive {
+            border-radius: 10px;
+        }
+    }
+</style>
+
+<div class="events-wrapper">
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="mb-5">
+
+            <div class="sport-label mb-2">
+                PERFORMANCE • PROGRESS • RESULTS
+            </div>
+
+            <h1 class="events-heading">
+                Event <span>Results.</span>
+            </h1>
+
+            <p class="events-subtitle">
+                Track performances, finish times and competition standings.
+            </p>
+
+        </div>
+
+        <!-- RESULTS SECTION -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+
+            <h5 class="section-title mb-0">
+                Competition Results
+            </h5>
+
+            <span class="results-count">
+                RESULTS
+            </span>
+
+        </div>
+
+        <div class="results-card shadow-sm">
+
+            <div class="table-responsive">
+
+                <table class="table results-table">
+
+                    <thead>
+                        <tr>
+                            <th>Event</th>
+                            <th>Date</th>
+                            <th>Category</th>
+                            <th>Finish Time</th>
+                            <th>Position</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var res in Model)
+                        {
+                            <tr>
+                                <td class="event-name">
+                                    @res.EventName
+                                </td>
+
+                                <td>
+                                    @res.Date
+                                </td>
+
+                                <td>
+                                    @res.Category
+                                </td>
+
+                                <td>
+                                    @res.Time
+                                </td>
+
+                                <td class="position-value">
+                                    @res.Placement
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
 </div>
