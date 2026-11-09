@@ -84,7 +84,7 @@ namespace PROGPOE_Frontend.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> Update(User user)
+        public async Task<IActionResult> UpdateU(User user)
         {
             var res = await _EventApi.UpdateP(user);
             return RedirectToAction("Profile", "Organiser");

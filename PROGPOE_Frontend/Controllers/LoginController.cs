@@ -41,6 +41,7 @@ namespace PROGPOE_Frontend.Controllers
         public async Task<IActionResult> Login(User user)
         {
             var res = await _LogApi.LoginUser(user);
+            Console.WriteLine(res);
             if (res == null)
             {
                 return RedirectToAction("Index", "Login");

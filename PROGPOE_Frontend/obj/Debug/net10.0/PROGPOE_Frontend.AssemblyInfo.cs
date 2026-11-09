@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PROGPOE_Frontend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f7c759aa473531ac7368b06be393d64d7a48d552")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b3668cc7912373fbf2628edc48af38590a3f9a8c")]
 [assembly: System.Reflection.AssemblyProductAttribute("PROGPOE_Frontend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PROGPOE_Frontend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
