@@ -98,3 +98,4 @@ C:\Users\phila\source\repos\PROGPOE_Frontend\PROGPOE_Frontend\obj\Debug\net10.0\
 C:\Users\phila\source\repos\PROGPOE_Frontend\PROGPOE_Frontend\obj\Debug\net10.0\PROGPOE_Frontend.genruntimeconfig.cache
 C:\Users\phila\source\repos\PROGPOE_Frontend\PROGPOE_Frontend\obj\Debug\net10.0\ref\PROGPOE_Frontend.dll
 C:\Users\phila\source\repos\PROGPOE_Frontend\PROGPOE_Frontend\obj\Debug\net10.0\PROGPOE_.E0D646FB.Up2Date
+C:\Users\phila\source\repos\PROGPOE_Frontend\PROGPOE_Frontend\obj\Debug\net10.0\PROGPOE_Frontend.sourcelink.json
