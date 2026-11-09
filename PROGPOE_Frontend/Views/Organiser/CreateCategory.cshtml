@@ -1,0 +1,10 @@
+﻿@model PROGPOE_Frontend.Models.Category
+<div>
+	<Form asp-action="CreateCat" method="post">
+		<lable>Event ID</lable>
+		<input id="eventID" asp-for="EventID" required /> <br />
+		<lable>Category Name</lable>
+		<input id="categoryName" asp-for="CategoryName" required /> <br />
+		<button type="submit">Update</button>
+	</Form>
+</div>

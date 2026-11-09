@@ -12,13 +12,8 @@
         {
             <tr>
                 <td>
-                    <Form asp-action="something" method="get">
-                        @Html.AntiForgeryToken()
-                        <input type="hidden" name="CategoryID" value="@cat.CategoryID" />
-                        <button type="submit">
-                            @cat.CategoryName
-                        </button>
-                    </Form>
+                    <input type="hidden" name="CategoryID" value="@cat.CategoryID" />
+                    <p>@cat.CategoryName</p>
                 </td>
             </tr>
         }

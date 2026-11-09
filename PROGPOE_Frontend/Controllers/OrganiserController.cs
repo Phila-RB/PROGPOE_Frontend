@@ -57,5 +57,48 @@ namespace PROGPOE_Frontend.Controllers
         {
             return View();
         }
+
+        public async Task<IActionResult> CreateCategory()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> CreateCat(Category cat)
+        {
+            var res = await _EventApi.CreateNewCat(cat);
+            return RedirectToAction("Home", "Organiser");
+        }
+
+        public async Task<IActionResult> CategoriesView()
+        {
+            var res = await _EventApi.GetCategories();
+            return View(res);
+        }
+
+        public async Task<IActionResult> Profile()
+        {
+            var res = await _EventApi.GetProfile();
+            return View(res);
+        }
+        public async Task<IActionResult> UpdateProfile()
+        {
+            return View();
+        }
+        public async Task<IActionResult> Update(User user)
+        {
+            var res = await _EventApi.UpdateP(user);
+            return RedirectToAction("Profile", "Organiser");
+        }
+
+        public async Task<IActionResult> Results()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> CreateResults(User user)
+        {
+            var res = await _EventApi.UpdateP(user);
+            return RedirectToAction("Home", "Organiser");
+        }
     }
 }

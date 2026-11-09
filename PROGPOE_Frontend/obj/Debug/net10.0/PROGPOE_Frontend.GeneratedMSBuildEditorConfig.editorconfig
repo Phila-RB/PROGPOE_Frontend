@@ -35,6 +35,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JnYW5pc2VyXENhdGVnb3JpZXNWaWV3LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/phila/source/repos/PROGPOE_Frontend/PROGPOE_Frontend/Views/Organiser/CreateCategory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JnYW5pc2VyXENyZWF0ZUNhdGVnb3J5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/phila/source/repos/PROGPOE_Frontend/PROGPOE_Frontend/Views/Organiser/CreateEvent.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JnYW5pc2VyXENyZWF0ZUV2ZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -51,6 +55,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JnYW5pc2VyXEhvbWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/phila/source/repos/PROGPOE_Frontend/PROGPOE_Frontend/Views/Organiser/Participants.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JnYW5pc2VyXFBhcnRpY2lwYW50cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/phila/source/repos/PROGPOE_Frontend/PROGPOE_Frontend/Views/Organiser/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JnYW5pc2VyXFByb2ZpbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -61,6 +69,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/phila/source/repos/PROGPOE_Frontend/PROGPOE_Frontend/Views/Organiser/SignedUp.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JnYW5pc2VyXFNpZ25lZFVwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/phila/source/repos/PROGPOE_Frontend/PROGPOE_Frontend/Views/Organiser/UpdateProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JnYW5pc2VyXFVwZGF0ZVByb2ZpbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/phila/source/repos/PROGPOE_Frontend/PROGPOE_Frontend/Views/Participant/CategoriesView.cshtml]
@@ -89,6 +101,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/phila/source/repos/PROGPOE_Frontend/PROGPOE_Frontend/Views/Participant/SignedUp.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydGljaXBhbnRcU2lnbmVkVXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/phila/source/repos/PROGPOE_Frontend/PROGPOE_Frontend/Views/Participant/UpdateProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydGljaXBhbnRcVXBkYXRlUHJvZmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/phila/source/repos/PROGPOE_Frontend/PROGPOE_Frontend/Views/Shared/_ValidationScriptsPartial.cshtml]

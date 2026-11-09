@@ -66,7 +66,7 @@ namespace PROGPOE_Frontend.Services
             return await res.Content.ReadFromJsonAsync<List<OrganiserEvents>>();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Organiser")]
         [HttpPut]
         public async Task<bool> UpdateEvent(Event updEvent)
         {
@@ -79,7 +79,7 @@ namespace PROGPOE_Frontend.Services
             return res.IsSuccessStatusCode;
         }
 
-        [Authorize]
+        [Authorize(Roles = "Organiser")]
         [HttpPost]
         public async Task<bool> CreateNewEvent(Event newEvent)
         {
@@ -92,7 +92,7 @@ namespace PROGPOE_Frontend.Services
             return res.IsSuccessStatusCode;
         }
 
-        [Authorize]
+        [Authorize(Roles = "Organiser,Participant")]
         [HttpGet]
         public async Task<Event> GetEvent(int id)
         {
@@ -117,7 +117,7 @@ namespace PROGPOE_Frontend.Services
             return await res.Content.ReadFromJsonAsync<Event>();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Organiser")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<bool> Delete(int id)
@@ -139,7 +139,7 @@ namespace PROGPOE_Frontend.Services
             return res.IsSuccessStatusCode;
         }
 
-        [Authorize]
+        [Authorize(Roles = "Organiser,Participant")]
         [HttpGet]
         public async Task<List<Category>> GetCategories()
         {
@@ -165,7 +165,7 @@ namespace PROGPOE_Frontend.Services
       
 
 
-        [Authorize]
+        [Authorize(Roles = "Organiser,Participant")]
         [HttpGet]
         public async Task<List<Category>> GetCategory(int id)
         {
@@ -189,7 +189,21 @@ namespace PROGPOE_Frontend.Services
             return await res.Content.ReadFromJsonAsync<List<Category>>();
         }
 
-        [Authorize]
+
+        [Authorize(Roles = "Organiser")]
+        [HttpPost]
+        public async Task<bool> CreateNewCat(Category cat)
+        {
+            var token = await _httpContextAccessor.HttpContext!.GetTokenAsync("access_token");
+
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var res = await _httpClient.PostAsJsonAsync<Category>($"api/categories", cat);
+
+            return res.IsSuccessStatusCode;
+        }
+
+        [Authorize(Roles = "Participant")]
         [HttpGet]
         public async Task<bool> SignupEvent(Signup signup)
           {
@@ -202,7 +216,7 @@ namespace PROGPOE_Frontend.Services
             return res.IsSuccessStatusCode;
         }
 
-        [Authorize]
+        [Authorize(Roles = "Organiser,Participant")]
         [HttpGet]
         public async Task<User> GetProfile()
         {
@@ -227,6 +241,20 @@ namespace PROGPOE_Frontend.Services
             return await res.Content.ReadFromJsonAsync<User>();
         }
 
+        [Authorize(Roles = "Organiser,Participant")]
+        [HttpPost]
+        public async Task<bool> UpdateP(User user)
+        {
+            var token = await _httpContextAccessor.HttpContext!.GetTokenAsync("access_token");
+
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var res = await _httpClient.PutAsJsonAsync($"api/auth/profile", user);
+
+            return res.IsSuccessStatusCode;
+        }
+
+        [Authorize(Roles = "Participant")]
         [HttpGet]
         public async Task<List<ParticipantResultsResponse>> GetResults()
         {
@@ -251,6 +279,20 @@ namespace PROGPOE_Frontend.Services
             return await res.Content.ReadFromJsonAsync<List<ParticipantResultsResponse>>();
         }
 
+        [Authorize(Roles = "Organiser")]
+        [HttpPost]
+        public async Task<bool> CreateNewResults(ParticipantResults pr)
+        {
+            var token = await _httpContextAccessor.HttpContext!.GetTokenAsync("access_token");
+
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var res = await _httpClient.PostAsJsonAsync<ParticipantResults>($"api/results", pr);
+
+            return res.IsSuccessStatusCode;
+        }
+
+        [Authorize(Roles = "Organiser,Participant")]
         [HttpPut]
         public async Task<List<ParticipantResultsResponse>> UpdateProfile(User user)
         {
@@ -274,6 +316,7 @@ namespace PROGPOE_Frontend.Services
             return await res.Content.ReadFromJsonAsync<List<ParticipantResultsResponse>>();
         }
 
+        [Authorize(Roles = "Participant")]
         [HttpGet]
         public async Task<List<SignedUpResponse>> GetJoinedEvents()
         {

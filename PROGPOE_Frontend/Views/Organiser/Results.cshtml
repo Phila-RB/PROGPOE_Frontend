@@ -1,38 +1,14 @@
-﻿@model IEnumerable<PROGPOE_Frontend.Models.ParticipantResultsResponse>
-
+﻿@model PROGPOE_Frontend.Models.ParticipantResults
 <div>
-    <h2>Results</h2>
-	<table class="table">
-    <thead>
-        <tr>
-            <th>Event</th>
-            <th>Date</th>
-            <th>Category</th>
-            <th>Finish time</th>
-            <th>Position</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var res in Model)
-        {
-            <tr>
-                <td>
-                    @res.EventName 
-                </td>
-                <td>
-                    @res.Date
-                </td>
-                <td>
-                    @res.Category
-                </td>
-                <td>
-                    @res.Time
-                </td>
-                <td>
-                    @res.Placement 
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+	<Form asp-action="CreateResults" method="post">
+		<lable>Participant ID: </lable>
+		<input id="participantID" asp-for="ParticipantID" required /> <br />
+		<lable>Event ID: </lable>
+		<input id="eventID" asp-for="EventID" required /> <br />
+		<lable>Placement: </lable>
+		<input id="placement" asp-for="Placement" required /> <br />
+		<lable>Time: </lable>
+		<input id="time" asp-for="Time" required /> <br />
+		<button type="submit">Update</button>
+	</Form>
 </div>

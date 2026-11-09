@@ -1,7 +1,7 @@
 ﻿
 @model PROGPOE_Frontend.Models.Event
 
-
+<h2>Event ID: @Model.EventID</h2>
 <h2>Event Name: @Model.EventName</h2>
 @* <input type="hidden" Name="EventID" value="@Model.EventID" /> *@
 <table class="table">
@@ -19,6 +19,7 @@
     </tr>
 </table>
 <a asp-action="EditEvent" asp-route-id="@Model.EventID">Edit</a>
+<a asp-action="CreateCategory" class="btn btn-primary">Create Category</a>
 <form asp-action="DeleteEvent" asp-route-id="@Model.EventID" method="post">
     <input type="hidden" name="_method" value="DELETE" />
 	<button type="submit">Delete</button>
