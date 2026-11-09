@@ -1,0 +1,20 @@
+﻿@model PROGPOE_Frontend.Models.User
+
+<div>
+	<div id="regForm" class="d-block">
+		<Form asp-action="Update" method="post">
+			<lable>Name: @Model.Name</lable>
+			<input type="hidden" id="name" asp-for="Name"/>
+			<lable>Surname: @Model.Surname</lable>
+			<input type="hidden" id="surname" asp-for="Surname"/>
+			<lable>Access: @Model.Access</lable>
+			<select type="hidden" id="access" asp-for="Access">
+				<option value="Participant">Participant</option>
+				<option value="Organiser">Organiser</option>
+			</select>
+			<lable>Password: @Model.Password</lable>
+			<input type="hidden" id="password" asp-for="Password"/>
+			<button type="hidden" type="submit">Update</button>
+		</Form>
+	</div>
+</div

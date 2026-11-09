@@ -1,0 +1,18 @@
+﻿@model PROGPOE_Frontend.Models.Event
+<div>
+	<Form asp-action="Create" method="post">
+		<lable>Category ID</lable>
+		<input id="categoryID" asp-for="CategoryID" required/> <br />
+		<lable>Event Name</lable>
+		<input id="name" asp-for="EventName" required/> <br />
+		<lable>Location</lable>
+		<input id="location" asp-for="Location" required/> <br />
+		<lable>Description</lable>
+		<input id="description" asp-for="Description" required/> <br />
+		<lable>Date</lable>
+		<input id="date" asp-for="Date" required/> <br />
+		<lable>Type</lable>
+		<input id="type" asp-for="Type" required/> <br />
+		<button type="submit">Update</button>
+	</Form>
+</div>

@@ -1,0 +1,43 @@
+﻿@model PROGPOE_Frontend.Models.User
+<div>
+	<h2>RaceDay</h2>
+	<div>
+		<div>
+			<button id="logBut">Login</button>
+			<button id="regBut">Register</button>
+		</div>
+		<div>
+			<div id="regForm" class="d-block">
+				<Form asp-action="Register" method="post">
+					<lable>Name</lable>
+					<input asp-for="Name"/>
+					<lable>Surname</lable>
+					<input asp-for="Surname"/>
+					<lable>Access</lable>
+					<select asp-for="Access">
+						<option value="Participant">Participant</option>
+						<option value="Organiser">Organiser</option>
+					</select>
+					<lable>Password</lable>
+					<input asp-for="Password"/>
+					<button type="submit">Register</button>
+				</Form>
+			</div>
+			<div id="logForm" class="d-none">
+				<Form asp-action="Login" method="post">
+					@Html.AntiForgeryToken()
+					<lable>Name</lable>
+					<input asp-for="Name" />
+					<lable>Surname</lable>
+					<input asp-for="Surname" />
+					<lable>Password</lable>
+					<input asp-for="Password" />
+					<button type="submit">Login</button>
+				</Form>
+			</div>
+		</div>
+	</div>
+</div>
+ @section  Scripts {
+	<script type="text/javascript" src="~/js/site.js" asp-append-version="true"></script>
+}

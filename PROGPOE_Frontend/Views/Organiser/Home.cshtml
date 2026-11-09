@@ -1,0 +1,72 @@
+﻿
+@model IEnumerable<PROGPOE_Frontend.Models.OrganiserEvents>
+
+<h2>Events</h2>
+<a asp-action="Profile" class="btn btn-primary">Profile</a>
+<a asp-action="CategoriesView" class="btn btn-primary">Categories</a>
+<a asp-action="SignedUp" class="btn btn-primary">Events Joined</a>
+<a asp-action="Results" class="btn btn-primary">Results</a>
+<a asp-action="CreateEvent" class="btn btn-primary">Create Event</a>
+<div class="container">
+    <div class="row">
+
+    <!-- Upcoming Events -->
+    <div class="col-md-6">
+        <h3>Upcoming Events</h3>
+
+        <table class="table">
+            <tbody>
+                @foreach (var eve in Model)
+                {
+                    @if (eve.Date >= DateTime.Now)
+                    {
+                        <tr>
+                            <td>
+                                <form asp-action="EventView" method="get">
+                                    <input type="hidden" name="EventID" value="@eve.EventID" />
+
+                                    <p>Event: @eve.EventName</p>
+                                    <p>Enrollments: @eve.TotalEnrollments</p>
+                                    <p>Date: @eve.Date</p>
+
+                                    <button type="submit">View</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Past Events -->
+    <div class="col-md-6">
+        <h3>Past Events</h3>
+
+        <table class="table">
+            <tbody>
+                @foreach (var eve in Model)
+                {
+                    @if (eve.Date < DateTime.Now)
+                    {
+                        <tr>
+                            <td>
+                                <form asp-action="EventView" method="get">
+                                    <input type="hidden" name="EventID" value="@eve.EventID" />
+
+                                    <p>Event: @eve.EventName</p>
+                                    <p>Enrollments: @eve.TotalEnrollments</p>
+                                    <p>Date: @eve.Date</p>
+
+                                    <button type="submit">View</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    </div>
+</div>

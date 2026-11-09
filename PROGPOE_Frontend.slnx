@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="../ProgPoe/PROGPOE/PROGPOE.csproj" />
+  <Project Path="PROGPOE_Frontend/PROGPOE_Frontend.csproj" />
+</Solution>

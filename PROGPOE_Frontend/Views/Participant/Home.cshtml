@@ -1,0 +1,32 @@
+﻿
+@model IEnumerable<PROGPOE_Frontend.Models.Event>
+
+<h2>Events</h2>
+<a asp-action="Profile" class="btn btn-primary">Profile</a>
+<a asp-action="CategoriesView" class="btn btn-primary">Categories</a>
+<a asp-action="SignedUp" class="btn btn-primary">Events Joined</a>
+<a asp-action="Results" class="btn btn-primary">Results</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Events</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var eve in Model)
+        {
+            <tr>
+                <td>
+                    <Form asp-action="EventView" method="get">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="EventID" value="@eve.EventID" />
+                        <button type="submit">
+                            @eve.EventName
+                        </button>
+                    </Form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

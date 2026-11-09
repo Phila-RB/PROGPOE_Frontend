@@ -1,0 +1,38 @@
+﻿@model IEnumerable<PROGPOE_Frontend.Models.ParticipantResultsResponse>
+
+<div>
+    <h2>Results</h2>
+	<table class="table">
+    <thead>
+        <tr>
+            <th>Event</th>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Finish time</th>
+            <th>Position</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var res in Model)
+        {
+            <tr>
+                <td>
+                    @res.EventName 
+                </td>
+                <td>
+                    @res.Date
+                </td>
+                <td>
+                    @res.Category
+                </td>
+                <td>
+                    @res.Time
+                </td>
+                <td>
+                    @res.Placement 
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>

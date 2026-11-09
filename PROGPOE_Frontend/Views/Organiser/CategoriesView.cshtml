@@ -1,0 +1,27 @@
+﻿@model IEnumerable<PROGPOE_Frontend.Models.Category>
+
+<div>
+	<table class="table">
+    <thead>
+        <tr>
+            <th>Categories</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cat in Model)
+        {
+            <tr>
+                <td>
+                    <Form asp-action="something" method="get">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="CategoryID" value="@cat.CategoryID" />
+                        <button type="submit">
+                            @cat.CategoryName
+                        </button>
+                    </Form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
