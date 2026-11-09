@@ -30,6 +30,19 @@ namespace PROGPOE_Frontend.Controllers
             return View(res);
         }
 
+        public async Task<IActionResult> JoinEvent(int id)
+        {
+            var res = await _EventApi.GetCategory(id);
+            return View(res);
+        }
+        public async Task<IActionResult> Signup(Category cat)
+        {
+            Console.WriteLine(cat.CategoryID + cat.EventID);
+            Signup signup = new() { EventID = cat.EventID , CategoryID = cat.CategoryID};
+            var res = await _EventApi.SignupEvent(signup);
+            var res2 = await _EventApi.GetJoinedEvents();
+            return RedirectToAction("SignedUp", "Participant");
+        }
         public async Task<IActionResult> Profile()
         {
             var res = await _EventApi.GetProfile();

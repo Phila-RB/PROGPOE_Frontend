@@ -162,6 +162,45 @@ namespace PROGPOE_Frontend.Services
             //Console.WriteLine(await res.Content.ReadFromJsonAsync<List<Event>>());
             return await res.Content.ReadFromJsonAsync<List<Category>>();
         }
+      
+
+
+        [Authorize]
+        [HttpGet]
+        public async Task<List<Category>> GetCategory(int id)
+        {
+            var token = await _httpContextAccessor.HttpContext!.GetTokenAsync("access_token");
+
+            using var request = new HttpRequestMessage(
+                HttpMethod.Get,
+                $"api/event/{id}/categories"
+            );
+
+            request.Headers.Authorization =
+                            new AuthenticationHeaderValue("Bearer", token);
+
+            var res = await _httpClient.SendAsync(request);
+
+            if (res == null)
+            {
+                return new List<Category> { };
+            }
+            //Console.WriteLine(await res.Content.ReadFromJsonAsync<List<Event>>());
+            return await res.Content.ReadFromJsonAsync<List<Category>>();
+        }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<bool> SignupEvent(Signup signup)
+          {
+            var token = await _httpContextAccessor.HttpContext!.GetTokenAsync("access_token");
+
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var res = await _httpClient.PostAsJsonAsync($"api/category/{signup.CategoryID}/participate", signup);
+
+            return res.IsSuccessStatusCode;
+        }
 
         [Authorize]
         [HttpGet]
