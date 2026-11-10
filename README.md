@@ -1,4 +1,6 @@
-git clone https://github.com/Phila-RB/PROGPOE_Frontend
+git clone backend https://github.com/Phila-RB/PROG6212-POE
+
+git clone frontend https://github.com/Phila-RB/PROGPOE_Frontend
 
 cd YOUR-REPOSITORY
 
